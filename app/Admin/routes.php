@@ -15,4 +15,13 @@ Route::group([
 
 
     $router->resource('settings', SettingController::class);
+    $router->resource('companies', CompanyController::class);
+    $router->resource('lines', LineController::class);
+    $router->resource('categories', CategoryController::class);
+    $router->resource('products', ProductController::class);
+
+
+    //api
+    //获取产品线列表，用于select
+    $router->get('/api/lines', 'ApiController@getLinesForSelect');
 });

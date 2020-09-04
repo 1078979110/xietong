@@ -15,7 +15,7 @@ class SettingController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Setting';
+    protected $title = '系统配置';
 
     /**
      * Make a grid builder.
@@ -31,10 +31,16 @@ class SettingController extends AdminController
         $grid->column('phone', __('Phone'));
         $grid->column('address', __('Address'));
         $grid->column('copyright', __('Copyright'));
-        $grid->column('banners', __('Banners'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
-
+        $grid->column('banners', __('Banners'))->carousel();
+        $grid->column('updated_at', __('Updated at'))->display(function($updated_at){
+            return date('Y-m-d H:i:s', $updated_at);
+        });
+        $grid->disableFilter();
+        $grid->disableCreateButton();
+        $grid->actions(function($action){
+            $action->disableView();
+            $action->disableDelete();
+        });
         return $grid;
     }
 
@@ -73,7 +79,7 @@ class SettingController extends AdminController
         $form->mobile('phone', __('Phone'));
         $form->text('address', __('Address'));
         $form->text('copyright', __('Copyright'));
-        $form->textarea('banners', __('Banners'));
+        $form->multipleImage('banners', __('Banners'));
 
         return $form;
     }
