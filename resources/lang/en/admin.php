@@ -4,7 +4,7 @@ return [
     'online'                => 'Online',
     'login'                 => 'Login',
     'logout'                => 'Logout',
-    'setting'               => 'Setting',
+    'setting'               => 'SettingController',
     'name'                  => 'Name',
     'username'              => 'Username',
     'password'              => 'Password',
