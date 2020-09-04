@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2020-09-04 19:57:42
+Date: 2020-09-04 20:02:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -689,7 +689,6 @@ CREATE TABLE `products` (
   `line_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `product_identifier` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '产品货号',
-  `product_specification` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '规格',
   `product_unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '单位',
   `product_b_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '批号',
   `product_m_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生产日期',
@@ -704,6 +703,23 @@ CREATE TABLE `products` (
 
 -- ----------------------------
 -- Records of products
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for product_specification
+-- ----------------------------
+DROP TABLE IF EXISTS `product_specification`;
+CREATE TABLE `product_specification` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `specification` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_at` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='商品规格表';
+
+-- ----------------------------
+-- Records of product_specification
 -- ----------------------------
 
 -- ----------------------------
