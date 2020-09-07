@@ -23,7 +23,6 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 Grid::init(function(Grid $grid){
     $grid->disableExport();
-    $grid->disableRowSelector();
     $grid->disableColumnSelector();
 });
 Form::init(function (Form $form) {
