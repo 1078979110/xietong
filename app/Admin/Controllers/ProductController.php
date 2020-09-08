@@ -2,13 +2,15 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Admin\Company;
 use App\Models\Admin\Product;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use SebastianBergmann\Diff\Line;
-
+use App\Models\Admin\Category;
+use App\Models\Admin\Line;
+use App\Admin\Extensions\Tools\ExcelImport;
 class ProductController extends AdminController
 {
     /**
@@ -30,15 +32,15 @@ class ProductController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('product_name', __('Product name'));
         $grid->column('company_id', __('Company'))->display(function(){
-            $company = Line::company($this->company_id);
+            $company = Product::company($this->company_id);
             return $company->company_name;
         });
         $grid->column('line_id', __('Line'))->display(function(){
-            $line = Category::line($this->line_id);
+            $line = Product::line($this->line_id);
             return $line->line_name;
         });
         $grid->column('category_id', __('Category'))->display(function(){
-            $category = Product::company($this->category_id);
+            $category = Product::category($this->category_id);
             return $category->category_name;
         });
         $grid->column('product_identifier', __('Product identifier'));
@@ -50,6 +52,9 @@ class ProductController extends AdminController
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
+        $grid->tools(function($tools){
+            $tools->append(new ExcelImport());
+        });
         return $grid;
     }
 

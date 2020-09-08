@@ -32,10 +32,8 @@ class CompanyController extends AdminController
         $grid->column('company_license', __('Company license'));
         $grid->column('company_firm', __('Company firm'));
         $grid->column('company_address', __('Company address'));
-        $grid->column(__('Under line'))->expand(function($model){
-            $lines = $model->lines->map(function($line){
-                return $line->only(['id', 'line_name', 'created_at']);
-            });
+        $grid->column(__('Under line'))->expand(function(){
+            $lines = Company::lines($this->id);
             $data = [];
             foreach ($lines as $key=>$line){
                 $data[$key]['id'] = $line['id'];
