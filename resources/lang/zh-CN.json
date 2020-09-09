@@ -78,6 +78,8 @@
   "Company" : "厂家",
   "Line" : "产品线",
   "Category" : "分类",
-  "Product excel" : "商品源"
+  "Product excel" : "商品源",
+  "Product id" : "商品",
+  "Specification" : "规格"
 
 }
