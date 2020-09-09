@@ -27,5 +27,6 @@ Route::group([
 
     //excel
     //导入产品
+    $router->get('/excel/products', 'ExcelController@products');
     $router->post('/excel/products', 'ExcelController@products');
 });

@@ -8,12 +8,13 @@
 
 namespace App\Admin\Controllers;
 
-
 use Encore\Admin\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Imports\ProductImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Encore\Admin\Layout\Content;
+use Encore\Admin\Widgets\Form;
 class ExcelController extends AdminController
 {
 
@@ -39,7 +40,8 @@ class ExcelController extends AdminController
         }
     }
 
-    public function products(Request $request){
+    public function products(Content $content, Request $request){
+        $content->title('产品导入');
         if($request->isMethod('post')){
             $ext_arr = ['xls', 'xlsx'];
             $result = $this->uploadFile($request->file('files'), $ext_arr);
@@ -58,6 +60,13 @@ class ExcelController extends AdminController
                 admin_toastr('文件上传失败','error');
                 return redirect('admin/products');
             }
+        }else{
+            $form = new Form();
+            $form->file('files', __('Product excel'))->required()->rules('mime:xls,xlsx,csv');
+            $form->action('/admin/excel/products');
+            $form->method('POST');
+            $content->body($form);
+            return $content;
         }
     }
 }

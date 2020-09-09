@@ -22,13 +22,13 @@ EOT;
     }
     public function render()
     {
-        Admin::script($this->script());
+        //Admin::script($this->script());
         if (Request::path() == 'admin/products'){
             $url = 'excel/products';
         }else {
             $url = 'excel/price';
         }
-        return view('admin.tools.excelimport')->with('url',$url);
+        return view('admin.tools.excelimport',['url'=>$url])->with('url',$url);
     }
 
 }
