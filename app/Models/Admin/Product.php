@@ -21,4 +21,8 @@ class Product extends Model
     public static function category($category_id){
         return Category::find($category_id);
     }
+
+    public static function spcifications($product_id){
+        return Specification::find($product_id);
+    }
 }

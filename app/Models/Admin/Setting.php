@@ -2,9 +2,9 @@
 
 namespace App\Models\Admin;
 
-use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Model;
 
-class Setting extends BaseModel
+class Setting extends Model
 {
     //
     protected $table = 'setting';

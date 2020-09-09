@@ -67,7 +67,9 @@ class ProductImport implements ToCollection
                 'product_i_date'          => $value[8],//有效日期
                 'product_r_certificate'   => $value[9],//注册证书
                 'product_r_c_invalidation'=> $value[10],//注册证失效日期
-                'product_s_conditions'    => $value[11] //运输条件
+                'product_s_conditions'    => $value[11], //运输条件
+                'created_at'              => date('Y-m-d H:i:s',time()),
+                'updated_at'              => date('Y-m-d H:i:s',time())
             ];
             $product_id = DB::table('products')->insertGetId($data_);
             if($value[12]){
@@ -75,7 +77,9 @@ class ProductImport implements ToCollection
                 foreach ($specifications as $k => $specification){
                     $_sp = [
                         'product_id'        => $product_id,
-                        'specification'     => $specification
+                        'specification'     => $specification,
+                        'created_at'        => date('Y-m-d H:i:s',time()),
+                        'updated_at'        => date('Y-m-d H:i:s',time())
                     ];
                     DB::table('product_specification')->insert($_sp);
                 }

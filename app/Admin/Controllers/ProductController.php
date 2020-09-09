@@ -2,15 +2,13 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Admin\Company;
 use App\Models\Admin\Product;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use App\Models\Admin\Category;
-use App\Models\Admin\Line;
 use App\Admin\Extensions\Tools\ExcelImport;
+use Encore\Admin\Widgets\Table;
 class ProductController extends AdminController
 {
     /**
@@ -44,7 +42,24 @@ class ProductController extends AdminController
             return $category->category_name;
         });
         $grid->column('product_identifier', __('Product identifier'));
-        $grid->column('product_specification', __('Product specification'));
+        $grid->column('product_specification', __('Product specification'))->display(function(){
+            return '查看';
+        })->modal(__('Product specification'),function(){
+            $specifications = Product::spcifications($this->id);
+            $data = [];
+            if(!is_null($specifications)){
+                foreach ($specifications as $key=> $specification){
+                    $s = [
+                      'id'=>$specification->id,
+                      'specification' => $specification->specification,
+                      'created_at' => $specification->created_at,
+                      'updated_at' => $specification->updated_at
+                    ];
+                    $data[] = $s;
+                }
+            }
+            return new Table(['Id',__('Specification'), __('Created at'), __('Updated at')], $data);
+        });
         $grid->column('product_unit', __('Product unit'));
         $grid->column('product_r_certificate', __('Product r certificate'));
         $grid->column('product_r_c_invalidation', __('Product r c invalidation'));

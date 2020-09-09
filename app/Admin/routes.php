@@ -19,6 +19,7 @@ Route::group([
     $router->resource('lines', LineController::class);
     $router->resource('categories', CategoryController::class);
     $router->resource('products', ProductController::class);
+    $router->resource('specifications', SpecificationController::class);
 
 
     //api
