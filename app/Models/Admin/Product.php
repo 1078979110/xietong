@@ -23,6 +23,6 @@ class Product extends Model
     }
 
     public static function spcifications($product_id){
-        return Specification::find($product_id);
+        return Specification::where('product_id',$product_id)->get();
     }
 }

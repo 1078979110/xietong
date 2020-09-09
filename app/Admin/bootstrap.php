@@ -24,6 +24,9 @@ use Encore\Admin\Grid;
 Grid::init(function(Grid $grid){
     $grid->disableExport();
     $grid->disableColumnSelector();
+    $grid->actions(function($actions){
+        $actions->disableView();
+    });
 });
 Form::init(function (Form $form) {
     $form->disableEditingCheck();

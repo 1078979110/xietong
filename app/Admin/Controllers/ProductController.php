@@ -57,6 +57,7 @@ class ProductController extends AdminController
                     ];
                     $data[] = $s;
                 }
+
             }
             return new Table(['Id',__('Specification'), __('Created at'), __('Updated at')], $data);
         });
@@ -64,6 +65,11 @@ class ProductController extends AdminController
         $grid->column('product_r_certificate', __('Product r certificate'));
         $grid->column('product_r_c_invalidation', __('Product r c invalidation'));
         $grid->column('product_s_conditions', __('Product s conditions'));
+        $status = [
+            'on'=>['value'=>0, 'text'=>'正常','color'=>'success'],
+            'off'=>['value'=>1, 'text'=>'下架','color'=>'danger']
+        ];
+        $grid->column('status',__('Status'))->switch($status);
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -116,7 +122,11 @@ class ProductController extends AdminController
         $form->text('product_r_certificate', __('Product r certificate'));
         $form->text('product_r_c_invalidation', __('Product r c invalidation'));
         $form->text('product_s_conditions', __('Product s conditions'));
-
+        $status = [
+            'on'=>['value'=>0, 'text'=>'正常','color'=>'success'],
+            'off'=>['value'=>1, 'text'=>'下架','color'=>'danger']
+        ];
+        $form->switch('status', __('Status'))->states($status);
         return $form;
     }
 }

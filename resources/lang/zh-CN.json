@@ -80,6 +80,8 @@
   "Category" : "分类",
   "Product excel" : "商品源",
   "Product id" : "商品",
-  "Specification" : "规格"
+  "Specification" : "规格",
+  "Type name" : "类型",
+  "Status" : "状态"
 
 }

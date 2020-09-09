@@ -20,6 +20,8 @@ Route::group([
     $router->resource('categories', CategoryController::class);
     $router->resource('products', ProductController::class);
     $router->resource('specifications', SpecificationController::class);
+    $router->resource('users', SalerController::class);
+    $router->resource('user-types', UserTypeController::class);
 
 
     //api
