@@ -25,6 +25,8 @@ Route::group([
     //api
     //获取产品线列表，用于select
     $router->get('/api/lines', 'ApiController@getLinesForSelect');
+    //获取商品列表，用于select,带分页
+    $router->get('/api/products', 'ApiController@getProductsForSelect');
 
     //excel
     //导入产品
