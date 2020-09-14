@@ -22,7 +22,7 @@ Route::group([
     $router->resource('specifications', SpecificationController::class);
     $router->resource('users', SalerController::class);
     $router->resource('user-types', UserTypeController::class);
-
+    $router->resource('orders', OrderController::class);
 
     //api
     //获取产品线列表，用于select

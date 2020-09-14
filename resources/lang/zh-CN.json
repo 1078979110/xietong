@@ -82,6 +82,11 @@
   "Product id" : "商品",
   "Specification" : "规格",
   "Type name" : "类型",
-  "Status" : "状态"
+  "Status" : "状态",
+  "Order id" : "订单号",
+  "Order buyer" : "销售",
+  "Order type" : "订单类型",
+  "Order price" : "订单价格",
+  "Order status" : "订单状态"
 
 }
