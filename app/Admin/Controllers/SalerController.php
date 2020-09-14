@@ -73,6 +73,11 @@ class SalerController extends AdminController
         $form->text('name', __('Name'));
         $form->mobile('phone',__('Phone'));
         $form->password('password', __('Password'));
+        $form->saving(function($form){
+            if($form->password && !$form->password != $form->model()->password){
+                $form->password = bcrypt($form->password);
+            }
+        });
         $form->select('type', __('Type name'))->options(function(){
             return User::userType();
         });
